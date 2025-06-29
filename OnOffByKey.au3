@@ -13,7 +13,16 @@ If Not FileExists($g_sKeyPath) Then
 	FileWrite($g_sKeyPath, "") ; crée un fichier vide
 Else
 	Local $key = StringStripWS(FileRead($g_sKeyPath), $STR_STRIPALL)
-	If $key <> "" Then $g_sHotKey = $key
+		If $key <> "" Then
+		Switch $key
+			Case "{DELETE}"
+				$g_sHotKey = '{DELETE}'
+			Case "{SUPPR}"
+				$g_sHotKey = '{DELETE}'
+			Case Else
+				$g_sHotKey = $key
+		EndSwitch
+	EndIf
 EndIf
 
 ; === Lecture de l’état actuel ===
